@@ -811,3 +811,146 @@ body {
         padding: 6px 14px;
     }
 }
+
+        /* Additional Layout-Specific Styles compatible with Main.css */
+        .hero-section {
+            padding: 80px 24px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: var(--font-brand);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            color: var(--primary-color);
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .features-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-brand);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.12);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            width: 54px;
+            height: 54px;
+            background-color: rgba(37, 99, 235, 0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-link {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
