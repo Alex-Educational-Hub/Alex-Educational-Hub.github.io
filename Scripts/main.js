@@ -204,3 +204,12 @@ const openSidebarBtn = document.getElementById('open-sidebar-btn');
 
         if (openSidebarBtn) openSidebarBtn.addEventListener('click', openSidebar);
         if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeSidebar);
+
+
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+        if (coursesToggle && coursesDropdown) {
+            coursesToggle.addEventListener('click', () => {
+                coursesDropdown.classList.toggle('open');
+            });
+        }
