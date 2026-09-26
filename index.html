@@ -1,448 +1,278 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Educational Hub</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0284c7',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="Style/main.css">
-    <link rel="icon" href="Images/favicon.png">
+    <title>Alex Educational Hub | Homepage</title>
+    <!-- External Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&family=Outfit:wght@600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main CSS Link -->
+    <link rel="stylesheet" href="Main.css">
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+<body>
 
-    <!-- HEADER -->
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Brand Logo -->
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 bg-clip-text text-transparent">
-                        Alex-Educational-Hub
-                    </span>
-                </div>
+    <!-- SIDEBAR OVERLAY -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                    <a href="#hero" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Home</a>
-                    <a href="#courses" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Courses & Subjects</a>
-                    <a href="#tools" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Daily Tools</a>
-                    <a href="#resources" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Resources</a>
-                </nav>
-
-                <!-- Search & Controls -->
-                <div class="flex items-center gap-3">
-                    <div class="relative hidden sm:block">
-                        <input type="text" id="global-search" onkeyup="filterContent()" placeholder="Search topics, resources..." class="w-48 lg:w-64 pl-9 pr-4 py-1.5 text-sm rounded-full bg-slate-100 dark:bg-slate-700 border border-transparent focus:border-sky-500 dark:focus:border-sky-400 focus:outline-none transition-all">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
-                    </div>
-
-                    <!-- Dark Mode Toggle Button -->
-                    <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors" title="Toggle Light/Dark Theme">
-                        <i class="fa-solid fa-moon dark:hidden text-lg"></i>
-                        <i class="fa-solid fa-sun hidden dark:inline text-lg text-amber-400"></i>
-                    </button>
-
-                    <!-- Mobile Menu Button -->
-                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
-                        <i class="fa-solid fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
+    <!-- SIDEBAR COMPONENT -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">Alex-<span>Hub</span></div>
+            <button class="collapse-btn" id="close-sidebar-btn" title="Collapse Sidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
 
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 pt-2 pb-4 space-y-2">
-            <input type="text" id="mobile-search" onkeyup="filterContent()" placeholder="Search topics..." class="w-full mb-3 pl-9 pr-4 py-2 text-sm rounded-lg bg-slate-100 dark:bg-slate-700 border border-transparent focus:border-sky-500">
-            <a href="#hero" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 font-medium">Home</a>
-            <a href="#courses" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 font-medium">Courses & Subjects</a>
-            <a href="#tools" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 font-medium">Daily Tools</a>
-            <a href="#resources" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 dark:text-slate-200 font-medium">Resources</a>
+        <ul class="nav-list">
+            <li>
+                <a href="#" class="nav-link active">
+                    <span class="nav-link-content">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Homepage</span>
+                    </span>
+                </a>
+            </li>
+            <li class="dropdown-container" id="courses-dropdown">
+                <div class="nav-link" id="courses-toggle">
+                    <span class="nav-link-content">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Courses</span>
+                    </span>
+                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                </div>
+                <ul class="submenu">
+                    <li>
+                        <a href="grammar.html" class="submenu-link">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span>Grammar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="vocabulary.html" class="submenu-link">
+                            <i class="fa-solid fa-spell-check"></i>
+                            <span>Vocabulary</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="phonology.html" class="submenu-link">
+                            <i class="fa-solid fa-waveform"></i>
+                            <span>Phonology</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="library.html" class="nav-link">
+                    <span class="nav-link-content">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Library</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="blog.html" class="nav-link">
+                    <span class="nav-link-content">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>Blog</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="about.html" class="nav-link">
+                    <span class="nav-link-content">
+                        <i class="fa-solid fa-user"></i>
+                        <span>About Me</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="header-left">
+                <button class="menu-btn" id="open-sidebar-btn" aria-label="Open Navigation Menu">
+                    <div class="menu-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span class="menu-text">Menu</span>
+                </button>
+            </div>
+
+            <div class="header-center">
+                <a href="#" class="brand-logo">
+                    <span class="brand-prefix">Alex</span>-Educational<span class="brand-badge">Hub</span>
+                </a>
+            </div>
+
+            <div class="header-right">
+                <a href="#signin" class="btn btn-signin">Sign In</a>
+                <a href="#signup" class="btn btn-signup">Sign Up</a>
+            </div>
         </div>
     </header>
 
-    <!-- MAIN BODY -->
-    <main class="flex-grow">
-        
+    <!-- MAIN CONTENT BODY -->
+    <main>
         <!-- Hero Section -->
-        <section id="hero" class="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-sky-50/50 to-white dark:from-slate-900 dark:to-slate-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center max-w-3xl mx-auto space-y-6">
-                    <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 uppercase tracking-wider">
-                        Interactive Learning Experience
-                    </span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
-                        Empower Your Mind at <br><span class="bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 bg-clip-text text-transparent">Alex Educational Hub</span>
-                    </h1>
-                    <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Access interactive STEM lessons, language drills, humanities guides, and productivity study tools—all designed to accelerate your mastery.
-                    </p>
-                    <div class="flex flex-wrap justify-center gap-4 pt-4">
-                        <a href="#courses" class="px-7 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transform hover:-translate-y-0.5 transition-all">
-                            Start Learning Now <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
-                        </a>
-                        <a href="#tools" class="px-7 py-3.5 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-100 font-semibold transition-all">
-                            Explore Productivity Tools
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Stats Highlights -->
-                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-center">
-                    <div class="p-4 rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
-                        <p class="text-3xl font-bold text-sky-600 dark:text-sky-400">4+</p>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">Core Disciplines</p>
-                    </div>
-                    <div class="p-4 rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
-                        <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">100%</p>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">Interactive & Free</p>
-                    </div>
-                    <div class="p-4 rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
-                        <p class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">Pomodoro</p>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">Built-in Timer</p>
-                    </div>
-                    <div class="p-4 rounded-xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
-                        <p class="text-3xl font-bold text-amber-600 dark:text-amber-400">Instant</p>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-medium">Knowledge Quizzes</p>
-                    </div>
-                </div>
+        <section class="hero-section">
+            <span class="hero-badge">Welcome to Alex Educational Hub</span>
+            <h1 class="hero-title">Master Languages & Skills with <span>Structured Guidance</span></h1>
+            <p class="hero-subtitle">
+                Access curated learning paths, comprehensive guides in Grammar, Vocabulary, and Phonology, and practical educational resources.
+            </p>
+            <div class="hero-cta">
+                <a href="#courses" class="btn btn-signup">Explore Courses</a>
+                <a href="library.html" class="btn btn-signin">Browse Library</a>
             </div>
         </section>
 
-        <!-- Subject & Course Cards Section -->
-        <section id="courses" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
-                <div>
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Interactive Subject Modules</h2>
-                    <p class="text-slate-600 dark:text-slate-400 mt-2">Flip interactive flashcards or test your knowledge directly on each topic card.</p>
-                </div>
-                <!-- Category Filter Buttons -->
-                <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="category-filters">
-                    <button onclick="filterCategory('all')" class="cat-btn active px-4 py-1.5 text-sm rounded-full bg-sky-600 text-white font-medium transition-all">All Subjects</button>
-                    <button onclick="filterCategory('stem')" class="cat-btn px-4 py-1.5 text-sm rounded-full bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-medium transition-all">STEM</button>
-                    <button onclick="filterCategory('languages')" class="cat-btn px-4 py-1.5 text-sm rounded-full bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-medium transition-all">Languages</button>
-                    <button onclick="filterCategory('humanities')" class="cat-btn px-4 py-1.5 text-sm rounded-full bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-medium transition-all">Humanities</button>
-                    <button onclick="filterCategory('skills')" class="cat-btn px-4 py-1.5 text-sm rounded-full bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-medium transition-all">Practical Skills</button>
-                </div>
+        <!-- Course Categories Section -->
+        <section class="features-section" id="courses">
+            <div class="section-header">
+                <h2>Explore Learning Paths</h2>
+                <p>Choose a category to start building your mastery today.</p>
             </div>
 
-            <!-- Subject Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="courses-grid">
-                
-                <!-- STEM Card -->
-                <div class="course-card stem bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl font-bold mb-4">
-                            <i class="fa-solid fa-flask"></i>
-                        </div>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">STEM</span>
-                        <h3 class="text-xl font-bold mt-1 text-slate-900 dark:text-white">Physics & Calculus</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Explore forces, motion, derivatives, and real-world mathematical applications.</p>
-                        
-                        <!-- Interactive Flashcard Component -->
-                        <div class="mt-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
-                            <p class="text-xs font-semibold text-slate-400 uppercase">Flashcard Drill</p>
-                            <div id="flashcard-stem" onclick="flipCard('flashcard-stem')" class="cursor-pointer my-2 min-h-[60px] flex items-center justify-center text-center font-medium text-sm text-slate-800 dark:text-slate-200 transition-all">
-                                <span>Click to Reveal: What is Newton's 2nd Law?</span>
-                            </div>
-                            <button onclick="toggleCardAnswer('flashcard-stem', 'Answer: F = m * a (Force = Mass x Acceleration)')" class="text-xs text-sky-600 dark:text-sky-400 font-medium hover:underline w-full text-center">Toggle Flashcard</button>
-                        </div>
+            <div class="cards-grid">
+                <!-- Grammar Card -->
+                <a href="grammar.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-book-open"></i>
                     </div>
-                </div>
+                    <h3>Grammar Modules</h3>
+                    <p>Master foundational to advanced rules, tenses, and structural usage with practical practice examples.</p>
+                    <span class="card-link">Start Learning <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
 
-                <!-- Languages Card -->
-                <div class="course-card languages bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl font-bold mb-4">
-                            <i class="fa-solid fa-language"></i>
-                        </div>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Languages</span>
-                        <h3 class="text-xl font-bold mt-1 text-slate-900 dark:text-white">Spanish & Linguistics</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Master daily conversational skills, essential grammar patterns, and active vocabulary.</p>
-                        
-                        <!-- Interactive Flashcard Component -->
-                        <div class="mt-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
-                            <p class="text-xs font-semibold text-slate-400 uppercase">Vocab Challenge</p>
-                            <div id="flashcard-lang" class="my-2 min-h-[60px] flex flex-col justify-center text-center font-medium text-sm text-slate-800 dark:text-slate-200">
-                                <span>Translate: "El conocimiento es poder"</span>
-                            </div>
-                            <button onclick="toggleCardAnswer('flashcard-lang', 'Translation: Knowledge is power!')" class="text-xs text-emerald-600 dark:text-emerald-400 font-medium hover:underline w-full text-center">Reveal Translation</button>
-                        </div>
+                <!-- Vocabulary Card -->
+                <a href="vocabulary.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-spell-check"></i>
                     </div>
-                </div>
+                    <h3>Vocabulary Building</h3>
+                    <p>Expand your word bank, study prefix/suffix rules, collocations, and contextual vocabulary.</p>
+                    <span class="card-link">Start Learning <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
 
-                <!-- Humanities Card -->
-                <div class="course-card humanities bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl font-bold mb-4">
-                            <i class="fa-solid fa-landmark"></i>
-                        </div>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">Humanities</span>
-                        <h3 class="text-xl font-bold mt-1 text-slate-900 dark:text-white">World History & Philosophy</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Uncover historical timelines, critical ethical frameworks, and world-changing events.</p>
-                        
-                        <!-- Mini Quiz inside card -->
-                        <div class="mt-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
-                            <p class="text-xs font-semibold text-slate-400 uppercase">Quick History Quiz</p>
-                            <p class="text-xs font-medium text-slate-800 dark:text-slate-200 mt-1">Which year did the Magna Carta get signed?</p>
-                            <div class="flex gap-2 mt-2">
-                                <button onclick="checkMiniQuiz(this, false)" class="flex-1 py-1 text-xs rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:bg-slate-100">1776</button>
-                                <button onclick="checkMiniQuiz(this, true)" class="flex-1 py-1 text-xs rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:bg-slate-100">1215</button>
-                            </div>
-                            <p class="quiz-feedback text-xs mt-1 font-semibold text-center hidden"></p>
-                        </div>
+                <!-- Phonology Card -->
+                <a href="phonology.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-waveform"></i>
                     </div>
-                </div>
-
-                <!-- Practical Skills Card -->
-                <div class="course-card skills bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl font-bold mb-4">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <span class="text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">Practical Skills</span>
-                        <h3 class="text-xl font-bold mt-1 text-slate-900 dark:text-white">Web Dev & Tech Skills</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Learn foundational HTML5, CSS3, JavaScript algorithms, and digital literacy.</p>
-                        
-                        <!-- Mini Quiz inside card -->
-                        <div class="mt-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
-                            <p class="text-xs font-semibold text-slate-400 uppercase">Code Trivia</p>
-                            <p class="text-xs font-medium text-slate-800 dark:text-slate-200 mt-1">What does CSS stand for?</p>
-                            <div class="flex gap-2 mt-2">
-                                <button onclick="checkMiniQuiz(this, true)" class="flex-1 py-1 text-xs rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:bg-slate-100">Cascading Style Sheets</button>
-                                <button onclick="checkMiniQuiz(this, false)" class="flex-1 py-1 text-xs rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:bg-slate-100">Computer Style System</button>
-                            </div>
-                            <p class="quiz-feedback text-xs mt-1 font-semibold text-center hidden"></p>
-                        </div>
-                    </div>
-                </div>
-
+                    <h3>Phonology & Speech</h3>
+                    <p>Learn IPA transcriptions, American English vowel sounds, reductions, and pronunciation rules.</p>
+                    <span class="card-link">Start Learning <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
             </div>
         </section>
-
-        <!-- Daily Learning Tool Section -->
-        <section id="tools" class="py-16 bg-slate-100 dark:bg-slate-800/50 transition-colors duration-300">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Daily Learning Tools</h2>
-                    <p class="text-slate-600 dark:text-slate-400 mt-2">Stay focused with our Pomodoro timer and challenge your daily knowledge.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    
-                    <!-- Pomodoro Timer Widget -->
-                    <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center text-center">
-                        <div class="flex items-center gap-2 mb-4">
-                            <i class="fa-solid fa-stopwatch text-sky-600 dark:text-sky-400 text-xl"></i>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Pomodoro Focus Timer</h3>
-                        </div>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Boost study productivity with 25-minute focused bursts.</p>
-                        
-                        <!-- Timer Display -->
-                        <div class="text-6xl font-black font-mono tracking-tight text-slate-800 dark:text-slate-100 my-4" id="timer-display">
-                            25:00
-                        </div>
-
-                        <!-- Timer Controls -->
-                        <div class="flex items-center gap-3 mt-4">
-                            <button onclick="startTimer()" class="px-6 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-medium text-sm shadow transition-all">Start</button>
-                            <button onclick="pauseTimer()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-medium text-sm shadow transition-all">Pause</button>
-                            <button onclick="resetTimer()" class="px-6 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 text-slate-800 dark:text-slate-200 font-medium text-sm transition-all">Reset</button>
-                        </div>
-                    </div>
-
-                    <!-- Daily Knowledge Quote & Trivia Generator -->
-                    <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center gap-2">
-                                    <i class="fa-solid fa-lightbulb text-amber-500 text-xl"></i>
-                                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Daily Wisdom & Facts</h3>
-                                </div>
-                                <span class="text-xs bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 px-2.5 py-1 rounded-full font-medium">Daily Boost</span>
-                            </div>
-
-                            <div class="p-6 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-100 dark:border-slate-700 min-h-[140px] flex flex-col justify-center">
-                                <p id="quote-text" class="text-base italic text-slate-700 dark:text-slate-300">"Education is not the learning of facts, but the training of the mind to think."</p>
-                                <p id="quote-author" class="text-xs font-semibold text-sky-600 dark:text-sky-400 mt-3 text-right">— Albert Einstein</p>
-                            </div>
-                        </div>
-
-                        <button onclick="generateRandomQuote()" class="mt-6 w-full py-3 rounded-xl bg-slate-900 dark:bg-slate-700 hover:bg-slate-800 dark:hover:bg-slate-600 text-white font-medium text-sm transition-all flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-rotate"></i> Generate New Quote / Fact
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Resource Center Section -->
-        <section id="resources" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Study Resource Center</h2>
-                <p class="text-slate-600 dark:text-slate-400 mt-2">Download interactive worksheets, study guides, and reference sheets.</p>
-            </div>
-
-            <!-- Resource Search Filter -->
-            <div class="max-w-md mx-auto mb-8">
-                <div class="relative">
-                    <input type="text" id="resource-search" onkeyup="filterResources()" placeholder="Filter study materials..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-sky-500 shadow-sm text-sm">
-                    <i class="fa-solid fa-filter absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
-                </div>
-            </div>
-
-            <!-- Resource Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="resources-grid">
-                
-                <!-- Item 1 -->
-                <div class="resource-item bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:border-sky-500 transition-all">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">PDF Sheet</span>
-                        <i class="fa-solid fa-file-pdf text-red-500 text-lg"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-900 dark:text-white text-lg">Calculus Cheat Sheet</h4>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Summary of fundamental derivatives, integrals, and limits formulas.</p>
-                    <div class="mt-6 flex gap-2">
-                        <button onclick="openResourceModal('Calculus Cheat Sheet', 'This comprehensive reference guide covers derivatives formulas, rules of integration, and logarithmic properties designed for high school and university mathematics students.')" class="flex-1 py-2 rounded-lg bg-sky-50 dark:bg-slate-700 hover:bg-sky-100 text-sky-700 dark:text-sky-300 font-semibold text-xs transition-colors">Preview</button>
-                        <button onclick="downloadSimulatedFile('Calculus_Cheat_Sheet.pdf')" class="px-3 py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs transition-colors" title="Download Worksheet"><i class="fa-solid fa-download"></i></button>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="resource-item bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:border-sky-500 transition-all">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-md">Worksheet</span>
-                        <i class="fa-solid fa-file-word text-blue-500 text-lg"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-900 dark:text-white text-lg">Spanish Conjugation Guide</h4>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Regular & irregular verb practice tables with sample sentences.</p>
-                    <div class="mt-6 flex gap-2">
-                        <button onclick="openResourceModal('Spanish Conjugation Guide', 'A complete exercise module covering Present, Past (Preterite), and Imperfect tenses for high-frequency Spanish verbs.')" class="flex-1 py-2 rounded-lg bg-sky-50 dark:bg-slate-700 hover:bg-sky-100 text-sky-700 dark:text-sky-300 font-semibold text-xs transition-colors">Preview</button>
-                        <button onclick="downloadSimulatedFile('Spanish_Conjugations.docx')" class="px-3 py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs transition-colors" title="Download Worksheet"><i class="fa-solid fa-download"></i></button>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="resource-item bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:border-sky-500 transition-all">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2.5 py-1 rounded-md">Interactive HTML</span>
-                        <i class="fa-solid fa-file-code text-amber-500 text-lg"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-900 dark:text-white text-lg">Web Dev Starter Pack</h4>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Template scripts, CSS flexbox cheat sheet, and semantic HTML samples.</p>
-                    <div class="mt-6 flex gap-2">
-                        <button onclick="openResourceModal('Web Dev Starter Pack', 'An all-in-one starter template containing boilerplate HTML5 markup, modern CSS layouts, and basic JavaScript event handler snippets.')" class="flex-1 py-2 rounded-lg bg-sky-50 dark:bg-slate-700 hover:bg-sky-100 text-sky-700 dark:text-sky-300 font-semibold text-xs transition-colors">Preview</button>
-                        <button onclick="downloadSimulatedFile('WebDev_StarterPack.zip')" class="px-3 py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs transition-colors" title="Download Worksheet"><i class="fa-solid fa-download"></i></button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
     </main>
 
-    <!-- Simulated Resource Modal -->
-    <div id="resource-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200 dark:border-slate-700 space-y-4">
-            <div class="flex justify-between items-center">
-                <h3 id="modal-title" class="text-xl font-bold text-slate-900 dark:text-white">Resource Title</h3>
-                <button onclick="closeResourceModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            <p id="modal-body" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Resource description details go here.</p>
-            <div class="pt-4 flex justify-end gap-3">
-                <button onclick="closeResourceModal()" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium text-xs">Close</button>
-                <button onclick="downloadSimulatedFile('Resource_Document.pdf'); closeResourceModal();" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-medium text-xs">Download Now</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 pt-12 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                
+    <!-- FOOTER COMPONENT -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
                 <!-- Column 1: Brand -->
-                <div class="space-y-4 md:col-span-1">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center text-white font-bold">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                        </div>
-                        <span class="font-bold text-lg text-white">Alex Hub</span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Dedicated to creating accessible, interactive, and modern learning experiences for students world-wide.
+                <div class="footer-col">
+                    <a href="#" class="brand-logo">
+                        <span class="brand-prefix">Alex</span>-Educational<span class="brand-badge">Hub</span>
+                    </a>
+                    <p class="footer-desc">
+                        Empowering learners worldwide through quality educational resources, practical guides, and structured learning paths.
                     </p>
-                    <div class="flex space-x-3 pt-2">
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-sky-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-sm"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-sky-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-sm"><i class="fa-brands fa-github"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-sky-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-sm"><i class="fa-brands fa-youtube"></i></a>
-                    </div>
                 </div>
 
                 <!-- Column 2: Quick Links -->
-                <div>
-                    <h5 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Quick Links</h5>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#hero" class="hover:text-sky-400 transition-colors">Home Banner</a></li>
-                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">Course Catalog</a></li>
-                        <li><a href="#tools" class="hover:text-sky-400 transition-colors">Study Tools</a></li>
-                        <li><a href="#resources" class="hover:text-sky-400 transition-colors">Downloads</a></li>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="quick-links">
+                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Home</a></li>
+                        <li><a href="#courses"><i class="fa-solid fa-angle-right"></i> All Courses</a></li>
+                        <li><a href="library.html"><i class="fa-solid fa-angle-right"></i> Library</a></li>
+                        <li><a href="about.html"><i class="fa-solid fa-angle-right"></i> About Us</a></li>
+                        <li><a href="#signin"><i class="fa-solid fa-angle-right"></i> Sign In / Register</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 3: Subjects -->
-                <div>
-                    <h5 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Subjects</h5>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">STEM & Physics</a></li>
-                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">Spanish & Languages</a></li>
-                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">History & Humanities</a></li>
-                        <li><a href="#courses" class="hover:text-sky-400 transition-colors">Practical Coding Skills</a></li>
-                    </ul>
-                </div>
+                <!-- Column 3: Contact & Socials -->
+                <div class="footer-col">
+                    <h3 class="footer-heading">Contact Me</h3>
+                    <div class="contact-list">
+                        <a href="https://t.me/your_telegram_username" target="_blank" class="contact-item">
+                            <span class="contact-icon"><i class="fa-brands fa-telegram"></i></span>
+                            <span>@your_telegram_username</span>
+                        </a>
+                        <a href="mailto:your.email@gmail.com" class="contact-item">
+                            <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                            <span>your.email@gmail.com</span>
+                        </a>
+                    </div>
 
-                <!-- Column 4: Newsletter -->
-                <div>
-                    <h5 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Stay Updated</h5>
-                    <p class="text-xs text-slate-400 mb-3">Subscribe for weekly study guides and tools.</p>
-                    <form onsubmit="handleNewsletter(event)" class="space-y-2">
-                        <input type="email" id="newsletter-email" required placeholder="Enter your email" class="w-full px-3 py-2 text-xs rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-sky-500">
-                        <button type="submit" class="w-full py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-medium text-xs transition-colors">Subscribe</button>
-                    </form>
-                    <p id="newsletter-msg" class="text-xs mt-2 text-emerald-400 hidden"></p>
+                    <div class="social-links">
+                        <a href="https://t.me/your_telegram_username" target="_blank" class="social-btn telegram" title="Telegram">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        <a href="mailto:your.email@gmail.com" class="social-btn gmail" title="Gmail">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                        <a href="https://facebook.com/yourprofile" target="_blank" class="social-btn facebook" title="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://x.com/yourhandle" target="_blank" class="social-btn x-twitter" title="Twitter / X">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-btn linkedin" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
                 </div>
-
             </div>
 
-            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
-                <p>&copy; 2026 Alex Educational Hub. All rights reserved.</p>
+            <div class="footer-divider"></div>
+
+            <div class="copyright-wrapper">
+                <div class="copyright-text">
+                    &copy; 2026 <span>Alex-Educational-Hub</span>. All rights reserved.
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <!-- INTERACTIVE SCRIPT (Sidebar Toggles & Dropdowns) -->
+    <script>
+        const openSidebarBtn = document.getElementById('open-sidebar-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const coursesToggle = document.getElementById('courses-toggle');
+        const coursesDropdown = document.getElementById('courses-dropdown');
+
+        function openSidebar() {
+            sidebar.classList.add('active');
+            sidebarOverlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        }
+
+        if (openSidebarBtn) openSidebarBtn.addEventListener('click', openSidebar);
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeSidebar);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+        if (coursesToggle && coursesDropdown) {
+            coursesToggle.addEventListener('click', () => {
+                coursesDropdown.classList.toggle('open');
+            });
+        }
+    </script>
 </body>
 </html>
